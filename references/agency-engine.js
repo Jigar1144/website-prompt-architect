@@ -72,3 +72,97 @@ export async function copyPrompt(text) {
   if (!navigator?.clipboard) throw new Error("Clipboard API unavailable");
   await navigator.clipboard.writeText(text);
 }
+
+
+export const MOTION_LIBRARY = {
+  scroll: [
+    "parallax", "horizontal-scroll", "pin-reveal", "scrubbed-sequence",
+    "image-zoom", "image-mask", "clip-path", "sticky-storytelling",
+    "horizontal-gallery", "velocity-motion", "depth-parallax",
+    "perspective-shift", "section-overlap", "progressive-blur",
+    "scroll-typography", "marquee"
+  ],
+  text: [
+    "fade", "split-lines", "split-words", "split-characters",
+    "blur-sharp", "mask-reveal", "scale", "tracking",
+    "color-transition", "sticky-headline", "kinetic-type",
+    "variable-weight", "editorial-line"
+  ],
+  cards: [
+    "lift", "shadow", "border-reveal", "image-zoom", "arrow-move",
+    "spotlight", "perspective-tilt", "magnetic", "image-displacement",
+    "depth", "expand", "hover-preview", "stacked-transition"
+  ],
+  image: [
+    "ken-burns", "parallax", "zoom", "mask", "clip-path",
+    "grayscale-color", "blur-sharp", "crossfade", "morph",
+    "object-position", "perspective"
+  ],
+  section: [
+    "curtain", "image-takeover", "color-wash", "clip-path",
+    "circular-expansion", "fullscreen-image", "perspective",
+    "vertical-wipe", "horizontal-wipe", "scale-through"
+  ]
+};
+
+export function selectMotionProfile({
+  businessType = "",
+  experience = "",
+  motionTier = "MODERATE",
+  performance = "MEDIUM"
+} = {}) {
+  const text = `${businessType} ${experience}`.toLowerCase();
+
+  if (/health|medical|finance|local service|professional/.test(text)) {
+    return {
+      tier: "LIGHT",
+      scroll: ["fade", "image-mask"],
+      text: ["split-lines", "fade"],
+      cards: ["lift", "border-reveal"],
+      cursor: [],
+      section: ["vertical-wipe"],
+      rule: "clarity-first"
+    };
+  }
+
+  if (/luxury|automotive|architecture|creative|gaming|immersive/.test(text)) {
+    return {
+      tier: motionTier === "LIGHT" ? "MODERATE" : motionTier,
+      scroll: ["pin-reveal", "parallax", "image-zoom"],
+      text: ["split-lines", "scale", "editorial-line"],
+      cards: ["perspective-tilt", "spotlight"],
+      cursor: ["magnetic", "spotlight"],
+      section: ["image-takeover", "scale-through"],
+      rule: "cinematic-but-controlled"
+    };
+  }
+
+  return {
+    tier: motionTier,
+    scroll: ["parallax", "image-mask", "scroll-typography"],
+    text: ["split-lines", "fade"],
+    cards: ["lift", "image-zoom"],
+    cursor: [],
+    section: ["vertical-wipe"],
+    rule: "purposeful-editorial"
+  };
+}
+
+export function createAnimationRecipe(section, profile, options = {}) {
+  return {
+    section,
+    enter: profile.text?.[0] || "fade",
+    image: profile.scroll?.[0] || "image-mask",
+    interaction: profile.cards?.[0] || "lift",
+    exit: profile.section?.[0] || "vertical-wipe",
+    mobile: options.mobile || "reduce-distance-and-disable-cursor",
+    reducedMotion: "static-state-or-instant-transition",
+    performance: options.performance || "MEDIUM"
+  };
+}
+
+export function validateMotionRecipe(recipe) {
+  const required = ["section", "enter", "image", "interaction", "exit",
+    "mobile", "reducedMotion", "performance"];
+  return required.every(key => recipe && recipe[key] != null);
+}

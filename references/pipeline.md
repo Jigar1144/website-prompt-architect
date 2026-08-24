@@ -117,3 +117,34 @@ ART DIRECTION
 → VISUAL QA
 
 Every adjacent visual state must have an explicit handoff.
+
+
+## Motion selection phase
+
+After creative direction and before section implementation:
+
+BUSINESS
+→ EXPERIENCE ARCHETYPE
+→ SECTION PURPOSE
+→ ART DIRECTION
+→ MOTION TIER
+→ INTERACTION HIERARCHY
+→ PERFORMANCE BUDGET
+→ MOTION SELECTION
+→ SECTION ANIMATION RECIPES
+→ GLOBAL SCROLL CHOREOGRAPHY
+
+The selected effects must be documented before implementation.
+
+For every animated section:
+- define entry
+- define text motion
+- define image motion
+- define card/interaction motion
+- define exit/handoff
+- define mobile behavior
+- define reduced-motion behavior
+- define performance cost
+
+Do not let the coding model invent animation behavior independently for each
+section.

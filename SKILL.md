@@ -888,6 +888,355 @@ If any answer is NO, revise the affected prompt(s) before final delivery.
 business-specific, art-directed experience where every major visual decision
 has a reason.
 
+
+## Motion & Interaction Engine
+
+The motion system is adaptive. Do not attach a random collection of effects to
+every section. Select motion based on business type, experience archetype,
+section purpose, art direction, interaction hierarchy, motion tier, and
+performance budget.
+
+### Scroll effects library
+
+Available patterns:
+- Parallax layers
+- Horizontal scroll
+- Pin and reveal
+- Scroll-scrubbed image sequence
+- Image scale/zoom
+- Image mask reveal
+- Clip-path transition
+- Section color transition
+- Sticky storytelling
+- Horizontal gallery
+- Scroll-velocity motion
+- Velocity-based skew
+- Depth/3D parallax
+- Camera-like zoom
+- Perspective shift
+- Section overlap
+- Progressive blur
+- Scroll-triggered typography
+- Before/after transformation
+- Continuous marquee
+- Infinite horizontal loop
+
+Select only effects that support the section's purpose.
+
+### Text animation library
+
+Entrance:
+- Fade up/down
+- Split-line reveal
+- Split-word reveal
+- Split-character reveal
+- Blur-to-sharp
+- Clip/mask reveal
+- Scale reveal
+- Controlled rotation reveal
+
+Scroll:
+- Tracking expansion
+- Character/word reveal
+- Line highlight
+- Color transition
+- Blur-to-sharp
+- Typography scale
+- Sticky headline
+- Scroll-linked letter spacing
+- Horizontal text movement
+
+Premium:
+- Kinetic typography
+- Variable-font weight animation
+- Oversized typography transition
+- Text morphing
+- Editorial line reveal
+- Controlled displacement
+
+Do not split every heading into characters. Typography animation must remain
+legible, accessible, and appropriate to the art direction.
+
+### Card interaction library
+
+Clean:
+- Lift
+- Shadow transition
+- Border reveal
+- Background transition
+- Image zoom
+- Arrow movement
+
+Premium:
+- Magnetic card
+- Cursor-follow spotlight
+- 3D/perspective tilt
+- Gradient tracking
+- Image displacement
+- Layered depth
+- Card expansion
+- Hover-to-preview
+
+Editorial:
+- Image reveal
+- Text slide
+- Asymmetric expansion
+- Horizontal movement
+- Stacked-card transition
+
+Use stronger effects only for primary/featured cards. Do not make every card
+magnetic or 3D.
+
+### Image effects library
+
+Available:
+- Ken Burns
+- Parallax
+- Zoom reveal
+- Mask reveal
+- Clip-path reveal
+- Circular reveal
+- Controlled liquid reveal
+- Grayscale-to-color
+- Blur-to-sharp
+- Image displacement
+- Crossfade
+- Morph
+- Object-position animation
+- Perspective movement
+
+Image effects must preserve image quality and focal points across breakpoints.
+
+### Cursor and pointer effects
+
+Optional desktop-only patterns:
+- Custom cursor
+- Cursor follower
+- Magnetic button
+- Magnetic link
+- Cursor text label
+- Cursor image preview
+- Cursor spotlight
+- Blend-mode cursor
+- Cursor scale/state transitions
+
+Rules:
+- Disable custom cursor systems on touch devices.
+- Never hide the native pointer when doing so would harm usability.
+- Cursor effects are tertiary unless explicitly promoted by the experience
+  direction.
+
+### Section transition library
+
+Available:
+- Curtain reveal
+- Image takeover
+- Color wash
+- Clip-path transition
+- Circular expansion
+- Full-screen image transition
+- Perspective transition
+- Vertical wipe
+- Horizontal wipe
+- Scale-through transition
+
+A section transition must have a narrative reason. Avoid using a different
+transition between every pair of sections.
+
+### Scroll choreography
+
+For advanced motion, define a normalized timeline:
+
+    0%    Hero enters
+    15%   Primary headline settles
+    30%   Feature/image expands
+    45%   Story or product pins
+    60%   Signature interaction occurs
+    75%   Gallery/next chapter reveals
+    90%   Conversion message emerges
+    100%  Final CTA composition
+
+This is an example, not a fixed timeline. Adapt percentages to the actual
+section sequence.
+
+The implementation prompt must specify what happens during each meaningful
+scroll range rather than simply saying "add scroll animations."
+
+### Animation recipe
+
+Every animated section should receive an implementation-ready recipe:
+
+SECTION: [Name]
+
+ENTER
+- Effect:
+- Duration:
+- Easing:
+- Trigger:
+- Stagger:
+
+TEXT
+- Effect:
+- Duration:
+- Stagger:
+- Scroll relationship:
+
+IMAGE
+- Effect:
+- Start state:
+- End state:
+- Scroll relationship:
+
+CARD / INTERACTION
+- Effect:
+- Trigger:
+- Strength:
+- Mobile behavior:
+
+EXIT / HANDOFF
+- Effect:
+- Next-section relationship:
+
+MOBILE
+- Keep:
+- Reduce:
+- Disable:
+- Recompose:
+
+REDUCED MOTION
+- Static/instant alternative:
+
+PERFORMANCE
+- Cost:
+- Asset requirements:
+- Fallback:
+
+### Adaptive animation selection
+
+Choose effects using:
+
+    Business
+      +
+    Experience Archetype
+      +
+    Section Purpose
+      +
+    Art Direction Lock
+      +
+    Motion Tier
+      +
+    Interaction Hierarchy
+      +
+    Performance Budget
+      ↓
+    Animation Selection
+
+Examples:
+
+Cafe / Coffee Studio:
+- Hero → slow image reveal
+- Story → split-line text reveal
+- Signature Coffee → product image zoom
+- Menu → staggered category/item reveal
+- Gallery → controlled horizontal movement
+- Location → subtle image/map reveal
+- CTA → typography + image transition
+
+Luxury automotive:
+- Hero → pinned cinematic camera/scale sequence
+- Product → scroll-scrubbed reveal
+- Engineering → layered parallax
+- Gallery → horizontal storytelling
+- CTA → controlled final composition
+
+SaaS:
+- Hero → restrained text reveal
+- Product → sticky product demo
+- Features → horizontal feature storytelling
+- Integrations → subtle diagram motion
+- CTA → focused reveal
+
+Healthcare/finance/local services:
+- Prefer clarity-first motion, restrained reveals, and minimal parallax.
+- Avoid decorative WebGL, heavy cursor effects, and motion that distracts from
+  trust, information, or conversion.
+
+### Motion hierarchy rules
+
+**PRIMARY MOTION**
+- Hero
+- Main CTA
+- Signature interaction
+- Key product/service reveal
+
+**SECONDARY MOTION**
+- Feature sections
+- Gallery
+- Cards
+- Supporting content
+
+**TERTIARY MOTION**
+- Hover states
+- Icons
+- Micro-interactions
+- Decorative motion
+
+Do not animate primary, secondary, and tertiary layers simultaneously unless
+the overlap is an intentional cinematic sequence.
+
+### Animation quality rules
+
+- No effect without purpose.
+- No animation should compete with the primary CTA.
+- Limit major effects to approximately 1–2 per viewport unless a deliberate
+  cinematic sequence requires more.
+- Prefer transform/opacity over layout-triggering animation.
+- Do not use the same reveal effect everywhere.
+- Preserve the Art Direction Lock.
+- Define desktop, mobile, and reduced-motion behavior.
+- Every high-cost effect needs a fallback.
+- Do not make every card magnetic.
+- Do not make every heading character-split.
+- Do not use parallax simply because the page uses GSAP.
+- Motion should support hierarchy, storytelling, atmosphere, or interaction.
+
+### Motion budget
+
+Classify effects:
+
+**LOW**
+- CSS transitions
+- opacity/transform
+- simple GSAP reveals
+- optimized responsive images
+
+**MEDIUM**
+- masks
+- moderate parallax
+- Lenis
+- controlled video
+- coordinated timelines
+
+**HIGH**
+- WebGL
+- large 3D assets
+- continuous video scrubbing
+- particle systems
+- post-processing
+- multiple simultaneous media layers
+
+Every HIGH effect requires:
+- Business justification
+- Performance budget
+- Loading strategy
+- Mobile strategy
+- Static fallback
+- Reduced-motion fallback
+- Failure state
+
+Premium means better decisions, not more effects.
+
+
 ## Generating the output
 
 Once step 10 is answered, build the HTML prompt pack immediately, using
