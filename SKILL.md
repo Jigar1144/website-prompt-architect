@@ -1,6 +1,6 @@
 ---
 name: website-prompt-architect
-description: Build business-specific, premium website prompt packs through an adaptive creative-director workflow. Use when turning a business idea into a complete, self-contained set of AI-coding prompts with technology recommendations, art direction, storytelling, motion, responsive design, performance, accessibility, SEO, and a $100K agency quality gate.
+description: Build business-specific, premium website prompt packs through an adaptive creative-director workflow with a four-round user interview and a deeper internal decision engine. Use when turning a business idea into a complete, self-contained set of AI-coding prompts with technology recommendations, project initialization and dependency installation, folder architecture, art direction, storytelling, selectable animation systems, responsive behavior, performance, accessibility, SEO, and a $100K agency quality gate.
 license: MIT
 ---
 
@@ -38,6 +38,41 @@ code during the interview, ask one thing at a time, and make every
 generated prompt fully self-contained so it works when pasted into a
 fresh AI conversation with zero extra context.
 
+## Prompt engineering upgrade — v2
+
+The prompt pack is a compiled specification, not a creative suggestion list.
+
+### Prompt contract
+Every generated prompt must contain, when relevant:
+- SOURCE OF TRUTH
+- LOCKED DECISIONS
+- OPEN VARIABLES
+- SUCCESS CRITERIA
+- NON-NEGOTIABLES
+- DO NOT INVENT
+- OUTPUT FORMAT
+- VALIDATION
+
+Never make the downstream model rediscover approved choices.
+
+### Specificity rule
+Replace subjective requests such as "premium", "beautiful", "modern", or
+"cinematic" with observable constraints: composition, scale, spacing, material,
+lighting direction, lens/perspective, motion behavior, contrast, crop safety,
+responsive behavior, and acceptance criteria.
+
+### Surgical revision rule
+When an output fails validation, revise only the failed dimension. Preserve all
+other locked variables. This is mandatory for image prompts and strongly
+recommended for UI/motion prompts. For image sets, this also means one
+individual prompt per image plus one shared IMAGE MASTER PROMPT; never bundle
+multiple distinct image generations into a single prompt.
+
+### Prompt acceptance rule
+A prompt is not considered complete until it contains enough information for a
+fresh model session to produce the intended result without asking for missing
+context that the skill already knows.
+
 ## Core rules (apply throughout)
 
 - **No code during the interview.** Don't output HTML/CSS/JS until the
@@ -51,15 +86,198 @@ fresh AI conversation with zero extra context.
   the reply, and use every answer in all later prompts. Don't dump the
   whole interview at once — it overwhelms people and produces shallower
   answers than a real back-and-forth would.
-- **Auto-generate at the end.** Once step 10 is answered, build and
+- **Auto-generate at the end.** Once the four user-facing rounds are resolved and the final direction is approved, build and
   deliver the HTML file immediately — don't ask "should I generate now?"
   The user already asked for this by starting the interview.
+- **Implementation foundation requirement.** The final HTML prompt pack must
+  include the project initialization/dependency prompt and complete folder
+  structure prompt before UI section prompts. These prompts must be
+  self-contained and executable by a coding model.
+- **Animation options requirement.** When motion is relevant, the final pack
+  must include the animation options menu plus a separate implementation prompt
+  that obeys the selected option. The pack should default to Option E — Hybrid
+  only when that is appropriate to the approved business/experience direction.
+
 - **Copy behavior in the output file.** Each prompt's copy button must
   copy *only* the raw prompt text — no title, no category label, no
   surrounding notes. It should paste into any AI tool and work
   immediately.
 
-## The interview — adaptive 10-step flow
+## The interview — 4 user-facing rounds / 10+ internal decision phases
+
+
+## Project setup and implementation foundation
+
+The final prompt pack must not stop at visual direction. It must also make the
+coding tool capable of starting the project correctly.
+
+After the user approves the technology direction, the generated pack must
+include a **Project Initialization + Dependency Installation** prompt.
+
+That prompt must define, when relevant:
+- framework and language
+- App Router / routing architecture
+- `src/` directory decision
+- strict TypeScript
+- ESLint and Tailwind setup
+- exact package installation commands using `npm install`
+- optional dependencies only when their feature is actually approved
+- `package.json` script expectations
+- `.env.example` placeholders
+- build/lint requirements
+- no invented dependency versions unless the user explicitly requests pinned
+  versions
+- a rule that every dependency must have a documented purpose
+
+For the current default Next.js/React direction, a typical approved dependency
+set may include:
+- `gsap`
+- `@gsap/react`
+- `lucide-react`
+- `clsx`
+- `tailwind-merge`
+- `zod`
+- `react-hook-form`
+
+Only install `three`, `@react-three/fiber`, and `@react-three/drei` when the
+approved experience actually uses 3D.
+
+### Required folder-structure prompt
+
+The final pack must also include a **Complete Folder Structure** prompt.
+It should create a maintainable architecture appropriate to the chosen stack.
+
+For a Next.js App Router project, the recommended baseline is:
+
+```text
+src/
+  app/
+  components/
+    ui/
+    navigation/
+    forms/
+    layout/
+  sections/
+  animations/
+  data/
+  lib/
+  hooks/
+  types/
+  styles/
+
+public/
+  images/
+    hero/
+    services/
+    projects/
+  logo/
+
+docs/
+```
+
+Adapt this structure to the approved project. Do not force folders that have no
+purpose.
+
+Architecture rules:
+- server components by default
+- client components only for browser state, GSAP, WebGL, or interaction
+- reusable UI primitives in `components/ui`
+- page storytelling in `sections`
+- animation logic in `animations`
+- business/content data in `data`
+- integrations in `lib`
+- shared types in `types`
+- static assets in predictable `public/` directories
+- no giant monolithic components
+- no circular imports
+- consistent naming conventions
+
+The prompt must include a fresh-clone acceptance test: install dependencies,
+run development, lint, and production build successfully.
+
+## Animation choice system
+
+Step 7 must recommend an animation system, but the final prompt pack must also
+give the user explicit implementation choices before animation code is written.
+
+Present this menu when the project benefits from motion:
+
+### Option A — Editorial Reveal
+- fade + small upward movement
+- image mask reveals
+- staggered headings/cards
+- restrained hover image zoom
+- minimal page transitions
+- intensity: LOW–MODERATE
+- best for clarity and premium editorial presentation
+
+### Option B — Architectural Parallax
+- subtle image parallax
+- geometric/clip-path reveals
+- layered spatial transitions
+- project-image depth
+- intensity: MODERATE
+- best for architecture, interiors, real estate, and strong photography
+
+### Option C — Cinematic Project
+- stronger image choreography
+- cinematic page transitions
+- masked image sequences
+- large typography entrances
+- carefully timed section handoffs
+- intensity: MODERATE–HIGH
+- best when project imagery and storytelling justify the added complexity
+
+### Option D — Premium Minimal
+- opacity transitions
+- tiny transforms
+- restrained hover states
+- little or no parallax
+- fast-feeling navigation
+- intensity: LOW
+- best for performance-first, accessibility-first, or conservative brands
+
+### Option E — Hybrid
+Combine:
+- Editorial Reveal as the base
+- Architectural Parallax only on hero/major imagery
+- Cinematic transitions only where they communicate project context
+- Premium Minimal behavior for navigation, forms, and mobile
+- intensity: MODERATE
+
+This should be the default recommendation for a premium construction,
+architecture, interior, real-estate, or design business when the user wants a
+high-end feel without unnecessary spectacle.
+
+### Animation decision contract
+
+Before generating implementation prompts, record:
+- SELECTED OPTION
+- WHY IT FITS THE BUSINESS
+- SECTION-BY-SECTION MOTION RECIPES
+- DESKTOP BEHAVIOR
+- MOBILE BEHAVIOR
+- REDUCED-MOTION BEHAVIOR
+- PERFORMANCE SAFEGUARDS
+- OPTIONAL 3D DEPENDENCIES, if any
+
+The implementation prompt must use the selected option exactly. Do not allow
+a later coding prompt to silently switch animation styles.
+
+### GSAP implementation contract
+
+When GSAP is approved:
+- use `@gsap/react` / `useGSAP`
+- centralize reusable animation presets
+- clean up contexts on unmount
+- prefer transforms, opacity, and clip-path
+- avoid layout-property animation
+- avoid scattered independent scroll listeners
+- use a coordinated scroll/timeline model for complex experiences
+- respect `prefers-reduced-motion`
+- provide static/native-scroll fallbacks
+- dynamically load heavy animation or WebGL modules when appropriate
+
 
 Ask these in order. The opening is intentionally minimal: **only ask for
 the business name and business type/industry**. Do not ask for location,
@@ -889,357 +1107,481 @@ business-specific, art-directed experience where every major visual decision
 has a reason.
 
 
-## Motion & Interaction Engine
 
-The motion system is adaptive. Do not attach a random collection of effects to
-every section. Select motion based on business type, experience archetype,
-section purpose, art direction, interaction hierarchy, motion tier, and
-performance budget.
+## Design Intelligence & Frontend Quality Engine
 
-### Scroll effects library
+Use this as an integrated internal layer, not as a separate skill. Do not copy
+external skill files. Apply the useful concepts to this project's own system.
 
-Available patterns:
-- Parallax layers
-- Horizontal scroll
-- Pin and reveal
-- Scroll-scrubbed image sequence
-- Image scale/zoom
-- Image mask reveal
-- Clip-path transition
-- Section color transition
-- Sticky storytelling
-- Horizontal gallery
-- Scroll-velocity motion
-- Velocity-based skew
-- Depth/3D parallax
-- Camera-like zoom
-- Perspective shift
-- Section overlap
-- Progressive blur
-- Scroll-triggered typography
-- Before/after transformation
-- Continuous marquee
-- Infinite horizontal loop
+### Industry-aware design system
 
-Select only effects that support the section's purpose.
+Before section prompts are finalized, derive a compact design system from:
+- Business type and visitor intent
+- Conversion goal
+- Experience archetype
+- Art Direction Lock
+- Technology and performance constraints
 
-### Text animation library
+Produce:
+- UI/pattern direction
+- Visual style
+- Color palette
+- Typography pairing
+- Key effects
+- Anti-patterns
+- Responsive priorities
 
-Entrance:
-- Fade up/down
-- Split-line reveal
-- Split-word reveal
-- Split-character reveal
-- Blur-to-sharp
-- Clip/mask reveal
-- Scale reveal
-- Controlled rotation reveal
+For every recommendation, explain why it fits the business and what should be
+avoided.
 
-Scroll:
-- Tracking expansion
-- Character/word reveal
-- Line highlight
-- Color transition
-- Blur-to-sharp
-- Typography scale
-- Sticky headline
-- Scroll-linked letter spacing
-- Horizontal text movement
+### Style and anti-pattern selection
 
-Premium:
-- Kinetic typography
-- Variable-font weight animation
-- Oversized typography transition
-- Text morphing
-- Editorial line reveal
-- Controlled displacement
+Evaluate visual families such as editorial, luxury, brutalist, organic,
+neo-futurist, translucent/glass, tactile, industrial, Swiss/grid-led, modular,
+cinematic, and immersive.
 
-Do not split every heading into characters. Typography animation must remain
-legible, accessible, and appropriate to the art direction.
+Do not select styles because they are trendy. Choose them because they support
+the business and visitor intent.
 
-### Card interaction library
+Explicitly identify anti-patterns, such as:
+- Generic AI purple/pink gradients
+- Excessive glassmorphism
+- Random neon
+- Unnecessary dark mode
+- Template-like repeated card grids
+- Decorative effects competing with conversion
+- Emoji as UI icons
+- Low-contrast text
+- Tiny tap targets
 
-Clean:
-- Lift
-- Shadow transition
-- Border reveal
-- Background transition
-- Image zoom
-- Arrow movement
+### Design-system contract
 
-Premium:
-- Magnetic card
-- Cursor-follow spotlight
-- 3D/perspective tilt
-- Gradient tracking
-- Image displacement
-- Layered depth
-- Card expansion
-- Hover-to-preview
+Before implementation, summarize:
 
-Editorial:
-- Image reveal
-- Text slide
-- Asymmetric expansion
-- Horizontal movement
-- Stacked-card transition
+DESIGN SYSTEM
+- Pattern:
+- Experience archetype:
+- Style:
+- Primary:
+- Secondary:
+- Accent / CTA:
+- Background:
+- Text:
+- Typography:
+- Key effects:
+- Motion tier:
+- Anti-patterns:
+- Accessibility risks:
+- Performance risks:
 
-Use stronger effects only for primary/featured cards. Do not make every card
-magnetic or 3D.
+This contract becomes the source of truth for downstream prompts.
 
-### Image effects library
+### Production frontend quality
 
-Available:
-- Ken Burns
-- Parallax
-- Zoom reveal
-- Mask reveal
-- Clip-path reveal
-- Circular reveal
-- Controlled liquid reveal
-- Grayscale-to-color
-- Blur-to-sharp
-- Image displacement
-- Crossfade
-- Morph
-- Object-position animation
-- Perspective movement
+Implementation prompts must require:
+- Semantic HTML
+- Correct heading hierarchy
+- Visible keyboard focus
+- Native interactive semantics
+- Responsive reflow
+- Safe text wrapping
+- Accessible labels and states
+- prefers-reduced-motion
+- Robust long-content behavior
+- No clipped essential content
+- Appropriate cursor states
+- Intentional loading, empty, and error states
 
-Image effects must preserve image quality and focal points across breakpoints.
+Essential text, chips, badges, labels, URLs, and identifiers must remain usable
+under narrow widths, zoom, text scaling, and realistic content variation.
 
-### Cursor and pointer effects
+### Context-aware implementation
 
-Optional desktop-only patterns:
-- Custom cursor
-- Cursor follower
-- Magnetic button
-- Magnetic link
-- Cursor text label
-- Cursor image preview
-- Cursor spotlight
-- Blend-mode cursor
-- Cursor scale/state transitions
+Do not blindly apply the same visual system to every component. Adapt density,
+hierarchy, interaction strength, motion, component complexity, content length,
+and breakpoint behavior to the actual page context.
 
-Rules:
-- Disable custom cursor systems on touch devices.
-- Never hide the native pointer when doing so would harm usability.
-- Cursor effects are tertiary unless explicitly promoted by the experience
-  direction.
+The result must feel designed for the specific business rather than generated
+from a generic UI kit.
 
-### Section transition library
+### Quality gate additions
 
-Available:
-- Curtain reveal
-- Image takeover
-- Color wash
-- Clip-path transition
-- Circular expansion
-- Full-screen image transition
-- Perspective transition
-- Vertical wipe
-- Horizontal wipe
-- Scale-through transition
+Reject or revise:
+- Generic AI aesthetics
+- Unmotivated gradients
+- Inconsistent component styling
+- Poor text wrapping
+- Broken chips/badges
+- Missing focus states
+- Color-only status communication
+- Hover-only essential interactions
+- Repeated visual patterns without narrative purpose
+- Unnecessary UI density
+- Decorative effects that reduce clarity
 
-A section transition must have a narrative reason. Avoid using a different
-transition between every pair of sections.
 
-### Scroll choreography
 
-For advanced motion, define a normalized timeline:
 
-    0%    Hero enters
-    15%   Primary headline settles
-    30%   Feature/image expands
-    45%   Story or product pins
-    60%   Signature interaction occurs
-    75%   Gallery/next chapter reveals
-    90%   Conversion message emerges
-    100%  Final CTA composition
+## Integrated Design-System Intelligence
 
-This is an example, not a fixed timeline. Adapt percentages to the actual
-section sequence.
+Use `references/design-intelligence.md` as the internal reasoning reference
+whenever the project needs UI/UX or visual-system decisions, and
+`references/design-library.md` as the concrete catalog it draws candidates
+from — 19 named visual styles, 18 hex-value color palettes, 16 font
+pairings, 14 motion presets, 14 chart types, domain-specific UX checklists
+(forms, e-commerce, booking, dashboards, mobile), and implementation notes
+for Vue/Nuxt, Svelte, Framer Motion, and no-code builders in addition to the
+Next.js/Astro/GSAP/Lenis/R3F/Tailwind guidance already covered. Both files
+are self-contained inside this skill folder — no external CLI, script, or
+data sync required.
 
-The implementation prompt must specify what happens during each meaningful
-scroll range rather than simply saying "add scroll animations."
+The engine should behave like a design-system search/reasoning layer:
+- classify the business and visitor intent
+- select the best page/pattern structure
+- select a visual style from the style library
+- reason about color using the palette library
+- reason about typography using the font-pairing library
+- check UX and accessibility, including domain-specific checklists
+- select motion presets and, if data-forward, chart types
+- apply stack-specific implementation guidance
+- identify anti-patterns
+- score the result before delivery
 
-### Animation recipe
+Do not overwhelm the user with the internal catalog. Return the smallest
+decision set needed to produce a strong website — 3-4 shortlisted options
+per domain, never the full table.
 
-Every animated section should receive an implementation-ready recipe:
+### Design-system persistence
 
-SECTION: [Name]
+Treat the approved design system as a master source of truth. Conceptually use:
 
-ENTER
-- Effect:
-- Duration:
-- Easing:
-- Trigger:
-- Stagger:
+design-system/
+├── MASTER.md
+└── pages/
+    └── [page].md
 
-TEXT
-- Effect:
-- Duration:
-- Stagger:
-- Scroll relationship:
+A page-specific override may intentionally deviate from MASTER. Otherwise,
+MASTER rules apply. Approved Art Direction remains the highest creative
+constraint.
 
-IMAGE
-- Effect:
-- Start state:
-- End state:
-- Scroll relationship:
+### Design recommendation scoring
 
-CARD / INTERACTION
-- Effect:
-- Trigger:
-- Strength:
-- Mobile behavior:
+Before locking a design system, compare at least one alternative when the
+decision is ambiguous.
 
-EXIT / HANDOFF
-- Effect:
-- Next-section relationship:
+Score:
+- business fit
+- visitor-intent fit
+- pattern fit
+- content fit
+- conversion fit
+- visual coherence
+- complexity/performance cost
 
-MOBILE
-- Keep:
-- Reduce:
-- Disable:
-- Recompose:
+Choose the strongest option and explain the reason in one concise paragraph.
 
-REDUCED MOTION
-- Static/instant alternative:
+### Expanded technology recommendation catalog
 
-PERFORMANCE
-- Cost:
-- Asset requirements:
-- Fallback:
+Technology must be **business-fit first**. Recommend the simplest stack that can
+meet the approved experience, content, SEO, conversion, performance, and
+maintenance requirements. The user may override the recommendation.
 
-### Adaptive animation selection
+### Framework / rendering options
+- **Next.js + React** — strongest general-purpose choice for dynamic marketing,
+  SaaS, commerce, complex integrations, and React-heavy experiences.
+- **Astro** — excellent for content-heavy, SEO-first, fast marketing sites and
+  local/service businesses where React interactivity is selective.
+- **React + Vite** — useful for highly interactive client applications, prototypes,
+  dashboards, or SPA-style experiences where server rendering is not central.
+- **Remix / React Router** — useful when web standards, nested routing, and data
+  loading patterns are priorities.
+- **Nuxt + Vue** — strong alternative for teams already invested in Vue.
+- **SvelteKit** — excellent for lightweight, interactive experiences with a small
+  runtime footprint.
+- **Gatsby** — consider only for an existing ecosystem or a clearly justified
+  legacy/content workflow; do not default to it for new builds.
+- **Plain HTML/CSS/JS** — appropriate for small static sites when a framework adds
+  unnecessary complexity.
 
-Choose effects using:
+### Styling / UI
+- Tailwind CSS
+- CSS Modules
+- Vanilla CSS with design tokens
+- shadcn/ui where a React component foundation is useful
+- Radix UI primitives where accessible interaction primitives are required
 
-    Business
-      +
-    Experience Archetype
-      +
-    Section Purpose
-      +
-    Art Direction Lock
-      +
-    Motion Tier
-      +
-    Interaction Hierarchy
-      +
-    Performance Budget
-      ↓
-    Animation Selection
+### Motion / interaction
+- **GSAP** — advanced timelines, scroll choreography, and premium motion.
+- **Motion for React** — component-level UI motion and state transitions.
+- **Lenis** — optional smooth scrolling where it materially improves the experience.
+- **CSS transitions / keyframes** — default for simple, performant interactions.
+- **Lottie** — only for approved vector animation assets with a clear purpose.
 
-Examples:
+### 3D / creative technology
+- **Three.js** — low-level 3D/WebGL when direct control is justified.
+- **React Three Fiber** — React-based 3D scenes and interactive product/brand worlds.
+- **@react-three/drei** — supporting helpers for approved R3F experiences.
+- **WebGL shaders** — use selectively for premium visual treatments; always provide
+  a non-WebGL fallback.
+- **Spline embeds** — useful when the user already has approved Spline scenes and
+  ownership/hosting constraints are acceptable.
+- **PixiJS** — strong for 2D GPU-accelerated interactive graphics and canvas scenes.
 
-Cafe / Coffee Studio:
-- Hero → slow image reveal
-- Story → split-line text reveal
-- Signature Coffee → product image zoom
-- Menu → staggered category/item reveal
-- Gallery → controlled horizontal movement
-- Location → subtle image/map reveal
-- CTA → typography + image transition
+### Commerce / content / integrations
+- Shopify / Shopify Hydrogen when commerce is central.
+- Sanity, Contentful, Storyblok, or WordPress when editorial ownership matters.
+- Stripe for approved payments.
+- Form providers or custom API routes for approved lead/contact workflows.
+- Algolia or lightweight search for genuinely search-heavy experiences.
+- Maps and booking integrations only when required by the business.
 
-Luxury automotive:
-- Hero → pinned cinematic camera/scale sequence
-- Product → scroll-scrubbed reveal
-- Engineering → layered parallax
-- Gallery → horizontal storytelling
-- CTA → controlled final composition
+### Technology decision rules
+1. Start with business outcome and constraints.
+2. Choose rendering strategy based on SEO, content, interactivity, and ownership.
+3. Add React only where component interactivity or ecosystem value justifies it.
+4. Add GSAP/Lenis only when motion has a clear narrative role.
+5. Add Three.js/R3F/WebGL only when 3D is part of the approved experience concept.
+6. Prefer Astro for fast, content-led sites when full React is unnecessary.
+7. Prefer Next.js when dynamic data, app-like behavior, commerce, or complex
+   integrations materially benefit from it.
+8. Never recommend a stack because it is fashionable. State the reason.
 
-SaaS:
-- Hero → restrained text reveal
-- Product → sticky product demo
-- Features → horizontal feature storytelling
-- Integrations → subtle diagram motion
-- CTA → focused reveal
+## Pre-delivery design intelligence
 
-Healthcare/finance/local services:
-- Prefer clarity-first motion, restrained reveals, and minimal parallax.
-- Avoid decorative WebGL, heavy cursor effects, and motion that distracts from
-  trust, information, or conversion.
+Before the $100K Agency Gate, run the integrated design-system checks for:
+- pattern fit
+- typography
+- color/contrast
+- resilient content
+- interaction semantics
+- accessibility
+- responsive behavior
+- anti-patterns
+- stack correctness
 
-### Motion hierarchy rules
+The final gate should fail when a visually impressive concept has weak usability
+or implementation quality.
 
-**PRIMARY MOTION**
-- Hero
-- Main CTA
-- Signature interaction
-- Key product/service reveal
+## Guided Adaptive Interview System
 
-**SECONDARY MOTION**
-- Feature sections
-- Gallery
-- Cards
-- Supporting content
+The interview must feel like a **creative-director conversation, not a form**.
+The user-facing experience is limited to **4 bundled rounds maximum**. Internally,
+the system may resolve 10+ decision phases using inference, business-pattern
+reasoning, catalog matching, and conservative defaults.
 
-**TERTIARY MOTION**
-- Hover states
-- Icons
-- Micro-interactions
-- Decorative motion
+### Core rule — fix the 10-step vs 4-question contradiction
 
-Do not animate primary, secondary, and tertiary layers simultaneously unless
-the overlap is an intentional cinematic sequence.
+**User-facing:** 4 rounds maximum, one bundle at a time.
 
-### Animation quality rules
+**Internal:** 10+ decision phases may still run:
 
-- No effect without purpose.
-- No animation should compete with the primary CTA.
-- Limit major effects to approximately 1–2 per viewport unless a deliberate
-  cinematic sequence requires more.
-- Prefer transform/opacity over layout-triggering animation.
-- Do not use the same reveal effect everywhere.
-- Preserve the Art Direction Lock.
-- Define desktop, mobile, and reduced-motion behavior.
-- Every high-cost effect needs a fallback.
-- Do not make every card magnetic.
-- Do not make every heading character-split.
-- Do not use parallax simply because the page uses GSAP.
-- Motion should support hierarchy, storytelling, atmosphere, or interaction.
+```text
+BUSINESS → STATUS → OUTCOME → AUDIENCE → OFFER → DIFFERENTIATION
+→ OBJECTIONS → MARKET/SEO → BRAND/ASSETS → FEATURES/CONSTRAINTS
+→ TRUST/PROOF → EXPERIENCE → TECHNOLOGY → IA → FINAL LOCK
+```
 
-### Motion budget
+Do not expose this internal ladder as a questionnaire. Never ask a fifth question
+just to fill a field. Ask a micro-follow-up only when a missing answer would
+materially change the stack, information architecture, conversion strategy, or
+visual direction.
 
-Classify effects:
+### Round 1 — Business + outcome
 
-**LOW**
-- CSS transitions
-- opacity/transform
-- simple GSAP reveals
-- optimized responsive images
+**Ask:**
+> What is the business/brand name, what does it do, who is it for, and what is the main thing you want the website to achieve?
 
-**MEDIUM**
-- masks
-- moderate parallax
-- Lenis
-- controlled video
-- coordinated timelines
+Capture or infer:
+- businessName
+- businessType / industry
+- offer
+- primary audience
+- primary goal
+- secondary goal
+- likely visitor intent
+- trust model
+- content density
 
-**HIGH**
-- WebGL
-- large 3D assets
-- continuous video scrubbing
-- particle systems
-- post-processing
-- multiple simultaneous media layers
+### Round 2 — Differentiation + conversion
 
-Every HIGH effect requires:
-- Business justification
-- Performance budget
-- Loading strategy
-- Mobile strategy
-- Static fallback
-- Reduced-motion fallback
-- Failure state
+**Ask:**
+> Why should someone choose this business over alternatives, and what might stop them from taking the next step?
 
-Premium means better decisions, not more effects.
+Capture:
+- differentiator / USP
+- positioning
+- competitive context
+- customer objections
+- buying friction
+- desired CTA
+- proof needed to overcome objections
 
+If the user does not know the differentiator, say that you can infer a defensible
+positioning direction from the business category and audience. Never invent factual
+claims, awards, client names, statistics, guarantees, or testimonials.
+
+#### Conversion + objection layer
+
+Translate each meaningful objection into a design response:
+
+| Objection | Design response |
+|---|---|
+| “Can I trust them?” | proof, credentials, reviews, process, transparency |
+| “Is it worth the price?” | value framing, outcomes, comparison, package clarity |
+| “I don't understand the service.” | process visualization, examples, plain-language copy |
+| “Why this business?” | differentiation, positioning, signature story |
+| “I'm not ready yet.” | education, FAQs, low-friction secondary CTA |
+| “This feels risky.” | guarantees only if real, policies, proof, clear expectations |
+
+The final prompt pack must state **which objections the website addresses and where**.
+
+### Round 3 — Direction + SEO/market + assets
+
+**Ask:**
+> What brand/assets already exist, where does the business operate or sell, how should the website feel, and are there any visual or content references you like?
+
+Capture:
+- brand status
+- logo / photography / copy readiness
+- local vs regional vs national vs international market
+- preferred visual direction
+- motion tolerance
+- reference sites or aesthetic references
+- likely search intent
+
+#### SEO intent + local SEO intelligence
+
+Infer or ask only what materially matters:
+- primary search intent
+- service/product keywords
+- branded vs non-branded intent
+- local modifiers
+- service area
+- location prominence
+- Google Business Profile alignment
+- LocalBusiness / Organization / Product / Service / FAQ schema opportunities
+- location/service pages when justified
+- internal-linking priorities
+- title/meta/H1 direction
+
+For local businesses, prioritize location, hours, contact/booking actions, map
+context, service areas, reviews/proof, and local search relevance. Never keyword-stuff.
+
+### Round 4 — Features + constraints + approval
+
+**Ask:**
+> What must the website do, what must be preserved or avoided, and do you have any technology, content, timeline, maintenance, or integration constraints?
+
+Capture:
+- required features
+- booking / commerce / forms / CMS / search / multi-language / integrations
+- existing website or migration needs
+- preferred stack if any
+- maintenance owner
+- launch/timeline pressure
+- content limitations
+- performance constraints
+- accessibility constraints
+- legal/compliance requirements
+- hard “must not” rules
+
+Then present one compact recommendation and ask for a single approval:
+> **Recommended direction:** [stack + experience + IA summary]. Approve, change,
+or let me refine it.
+
+### Trust / proof inventory
+
+Before finalizing the structure, inventory what is real and available:
+- testimonials/reviews
+- certifications/licenses
+- awards
+- clients/partners
+- case studies
+- before/after evidence
+- credentials/team expertise
+- guarantees or policies
+- press/media mentions
+- measurable outcomes
+
+Mark each as **Available / Partial / Missing / Must not claim**. Never fabricate proof.
+If proof is missing, design for trust through clarity, process, transparency, and
+credible content rather than fake social proof.
+
+### Real-world business constraint check
+
+The recommendation must account for the real operating environment:
+- Who maintains the website after launch?
+- Does the business need a CMS?
+- Is content frequently updated?
+- Does it need bookings, payments, ordering, CRM, email, maps, or WhatsApp?
+- Is existing SEO/URL equity important?
+- Is launch speed more important than experimentation?
+- Are there slow-device or slow-network audiences?
+- Are there regulatory/accessibility requirements?
+
+Do not introduce a CMS, 3D stack, animation library, or complex architecture
+without a concrete business reason.
+
+### Explicit “Do not over-design” gate
+
+Before approving the creative direction, run this gate:
+
+> **If an effect does not improve comprehension, hierarchy, emotional positioning,
+> product/service understanding, trust, or conversion, remove it.**
+
+Score visual complexity as **Low / Medium / High / Extreme** and justify every
+High or Extreme feature. Premium means better decisions, not more effects.
+
+### No responsive interview
+
+Do **not** interview the user about breakpoints, device matrices, responsive
+variants, or other responsive implementation details. Infer sensible
+responsive behavior from the approved design and implementation stack. The final
+prompts may still contain normal responsive requirements, but the interview stays
+business- and outcome-focused.
+
+### Internal final source of truth
+
+Compile this before generating downstream prompts:
+
+```text
+WEBSITE CREATIVE + CONVERSION BRIEF
+Business:
+Industry:
+Primary Goal:
+Secondary Goal:
+Audience:
+Market:
+Search Intent:
+Positioning:
+Differentiator:
+Customer Objections:
+Offer:
+Trust / Proof Inventory:
+Content Readiness:
+Brand:
+Visual Direction:
+Typography:
+Color:
+Motion Tier:
+Visual Complexity Budget:
+Framework:
+Animation System:
+3D/WebGL:
+CMS / Integrations:
+Maintenance Owner:
+SEO Strategy:
+Approved Pages:
+Approved Features:
+Real-World Constraints:
+Things to Avoid:
+```
+
+Every generated prompt must inherit this source of truth. Do not re-ask known fields.
 
 ## Generating the output
 
-Once step 10 is answered, build the HTML prompt pack immediately, using
+Once the four user-facing rounds are resolved and the final direction is approved, build the HTML prompt pack immediately, using
 the prompt order and templates below, and the HTML visual spec below.
 
 ### Prompt order
@@ -1269,7 +1611,7 @@ sections).
 - P12 — Preloader / Loading Screen
 - P13 — Navigation Bar (Header)
 
-**Sections** — one prompt per section approved in interview step 5, in
+**Sections** — one prompt per section approved in final page-structure decision, in
 the order the user approved them, starting at P14 (Hero is normally
 first). End with the Footer prompt.
 
@@ -1283,12 +1625,11 @@ first). End with the Footer prompt.
 - PN+5 — GSAP Animation
 - PN+6 — Scroll Animation
 - PN+7 — Preloader Animation Sequence
-- PN+8 — Three.js / WebGL (only if approved in interview step 7)
+- PN+8 — Three.js / WebGL (only if approved in the final experience/technology decision)
 - PN+8a — Smooth Scroll System (premium tier only — see below)
 - PN+8b — 3D / WebGL Hero (premium tier only)
 - PN+8c — Agency-Tier Polish Checklist (premium tier only)
 - PN+9 — Responsive System
-- PN+10 — Advanced Responsive Breakpoints
 
 **Content**
 - PN+11 — Copywriting & Content Strategy
@@ -1370,40 +1711,297 @@ Naming conventions:
 - Constant files: SCREAMING_SNAKE_CASE
 ```
 
+### Image prompt separation rule — MANDATORY
+
+Image prompts must NEVER be bundled into one large prompt when a page requires
+multiple distinct images. Treat every image as its own production asset.
+
+For every approved image set, generate:
+
+1. **ONE IMAGE MASTER PROMPT** — the shared visual contract only. It locks the
+   business, art direction, palette, materials, lighting, camera language,
+   realism level, composition principles, negative rules, continuity rules,
+   and technical output rules. The master prompt does NOT describe a specific
+   image and does NOT replace individual image prompts.
+
+2. **ONE INDIVIDUAL IMAGE PROMPT PER IMAGE** — each image gets a separate,
+   numbered, copyable prompt. If the design requires 4 images, output exactly
+   5 image prompts total: 1 master prompt + Image Prompt 01 + Image Prompt 02 +
+   Image Prompt 03 + Image Prompt 04.
+
+3. Each individual image prompt must repeat enough of the master context to be
+   self-contained. It may reference the Master Prompt ID, but must not say
+   “same as above”, “as discussed”, or rely on conversation memory.
+
+4. Never combine multiple image briefs using labels such as “Image 1 / Image 2 /
+   Image 3” inside one generation prompt. One generation prompt = one image
+   asset.
+
+5. Each individual image prompt must have its own: section/asset role, subject,
+   composition, aspect ratio, focal point, safe crop, text-safe area, filename,
+   desktop/mobile behavior, and negative rules.
+
+6. If the same image is reused in multiple UI locations, create one source asset
+   prompt and separate implementation instructions; do not generate duplicate
+   visual concepts unless a different crop or composition is genuinely required.
+
+7. Image prompt IDs must be deterministic and easy to map to the asset plan:
+   `IMG-MASTER-01`, `IMG-01`, `IMG-02`, `IMG-03`, etc.
+
+8. The final prompt-pack UI must give every image prompt its own Copy button.
+   The Copy button copies only that individual raw prompt. The master prompt also
+   gets its own Copy button.
+
+9. The asset inventory must map each image prompt to an exact filename, intended
+   section, dimensions, aspect ratio, and generation status.
+
+10. The same rule applies to AI-generated stills, photography briefs, video
+    keyframes, and 3D render prompts unless the user explicitly asks for a
+    storyboard/composite prompt.
+
+### Image Master Prompt template
+
+```text
+PROMPT ID: IMG-MASTER-01
+TYPE: IMAGE MASTER PROMPT
+
+OBJECTIVE
+Lock the shared visual generation language for [Business Name]. This prompt
+does not create a specific image. It defines the visual contract inherited by
+all individual image prompts in this asset set.
+
+PROJECT CONTEXT
+- Business:
+- Industry:
+- Website experience:
+- Design-system version:
+- Art-direction version:
+
+SHARED ART DIRECTION
+- Visual style:
+- Materials:
+- Lighting:
+- Camera/lens/perspective:
+- Environment:
+- Color treatment:
+- Texture/detail:
+- Composition rules:
+- Subject scale:
+- Typography/image relationship:
+
+SHARED TECHNICAL RULES
+- Output quality:
+- Preferred aspect-ratio families:
+- Resolution target:
+- Safe-crop philosophy:
+- Responsive crop rules:
+- Filename convention:
+
+SHARED NEGATIVE RULES
+- No unrelated visual styles
+- No accidental text/logos/watermarks
+- No invented people, brands, locations, statistics, or objects
+- No distorted architecture or impossible geometry
+- No unrelated colors/materials
+
+CONTINUITY RULE
+All images must feel like they belong to one photographic/art-directed world.
+Preserve lighting logic, camera language, material realism, palette family,
+and overall visual character across the set.
+
+OUTPUT
+Return the locked master visual contract only. Do not generate a specific
+scene or image from this master prompt.
+```
+
+### Individual Image Prompt template
+
+```text
+PROMPT ID: IMG-[NN]
+MASTER: IMG-MASTER-01
+TYPE: INDIVIDUAL IMAGE PROMPT
+
+OBJECTIVE
+Create ONE production-ready image asset for [Business Name].
+
+PROJECT CONTEXT
+- Section:
+- Section purpose:
+- Asset role:
+- Exact UI location:
+
+INHERITED VISUAL CONTRACT
+- Visual style:
+- Materials:
+- Lighting:
+- Camera/lens/perspective:
+- Environment:
+- Color treatment:
+- Texture/detail:
+- Composition rules:
+- Negative rules:
+
+IMAGE-SPECIFIC BRIEF
+- Primary subject:
+- Secondary elements:
+- Required objects:
+- Forbidden objects:
+- Foreground:
+- Midground:
+- Background:
+- Leading lines:
+- Negative space:
+- Focal point + position:
+- Visual weight:
+- Desired mood:
+
+UI / CROP REQUIREMENTS
+- Target viewport:
+- Aspect ratio:
+- Dimensions:
+- Safe crop:
+- Text-safe zone:
+- Mobile crop/recomposition:
+- Desktop crop/recomposition:
+
+CONTINUITY
+- Previous image/state:
+- This image opening state:
+- Next image/state:
+- Match lighting/camera/scale/color:
+
+OUTPUT
+Create exactly ONE image concept. Do not create a collage, contact sheet,
+multi-panel image, or alternate concepts unless explicitly requested.
+
+IMPLEMENTATION HANDOFF
+Return filename, dimensions, aspect ratio, focal point, safe crop, alt-text
+direction, and generated/placeholder status.
+```
+
+### Image set generation protocol
+
+When a page/section needs N images, the generated prompt pack must contain:
+- 1 master image prompt
+- N individual image prompts
+- 1 asset inventory mapping prompt ID → filename → section → role → dimensions
+  → aspect ratio → viewport → status
+
+Example for 4 images:
+- IMG-MASTER-01 — Shared architectural visual contract
+- IMG-01 — Hero image
+- IMG-02 — Residential service image
+- IMG-03 — Commercial service image
+- IMG-04 — Renovation service image
+
+Do not merge those five into one prompt.
+
 ### Image generation prompt (PN+1) template
 
-This is the dedicated asset prompt (separate from the per-section IMAGES
-block, which references it). It must work regardless of whether the
-receiving AI tool can generate images itself or only writes code:
+The image prompt must be compiled, self-contained, and validated. It should
+minimize trial-and-error by specifying the actual UI use, crop, focal point,
+safe area, shared art direction, continuity, and negative rules.
 
+```text
+OBJECTIVE
+Create ONE production-ready image asset for [Business Name].
+
+SOURCE OF TRUTH
+- Design-system version: [VERSION]
+- Art-direction version: [VERSION]
+- Section: [NAME]
+- Section purpose: [PURPOSE]
+- Asset role: [ROLE]
+
+LOCKED DECISIONS
+- Style:
+- Materials:
+- Lighting:
+- Camera/lens/perspective:
+- Environment:
+- Color treatment:
+- Texture/detail:
+- Subject scale:
+- Motion character:
+- Negative rules:
+
+USAGE
+- Target viewport: [DESKTOP / TABLET / MOBILE / ALL]
+- Aspect ratio: [RATIO]
+- Placement: [EXACT UI LOCATION]
+- Safe crop: [PROTECTED AREA]
+- Text-safe zone: [LOCATION]
+- Focal point: [SUBJECT + POSITION]
+- Required variants: [LIST]
+
+SUBJECT
+- Primary subject:
+- Secondary subject:
+- Pose/action:
+- Required objects:
+- Forbidden objects:
+- Geometry/anatomy constraints:
+
+COMPOSITION
+- Foreground:
+- Midground:
+- Background:
+- Leading lines:
+- Negative space:
+- Horizon/alignment:
+- Visual weight:
+- Crop behavior:
+
+CONTINUITY
+- Previous state:
+- This opening state:
+- Next state:
+- Match lighting/camera/scale/color:
+- Transition purpose:
+
+QUALITY TARGET
+- Realism/stylization:
+- Material realism:
+- Detail density:
+- Edge quality:
+- Lighting consistency:
+- No accidental text/logos/watermarks:
+
+DO NOT INVENT
+No fabricated brand facts, product features, people identities,
+testimonials, locations, logos, text, statistics, or interface elements.
+
+OUTPUT
+Generate one master asset only. Respect the exact composition and crop
+requirements. Do not introduce a second visual concept.
+
+VALIDATION
+Reject/revise only for:
+1. wrong subject
+2. wrong composition or crop safety
+3. broken geometry/anatomy
+4. inconsistent lighting/material
+5. wrong palette family
+6. accidental text/logo/watermark
+7. continuity break
+8. UI-safe area failure
+9. obvious generation artifacts
+
+IMPLEMENTATION HANDOFF
+Return:
+- Filename
+- Dimensions
+- Aspect ratio
+- Focal point
+- Safe crop
+- Desktop/mobile variants
+- Alt-text direction
+- Generated/placeholder status
+- Prompt version
 ```
-OBJECTIVE: Produce every image asset needed for [Business Name]'s site,
-sourced from the section-by-section image directions already specified.
 
-PROJECT CONTEXT: [Business name], brand vibe: [adjectives from step 9],
-color palette: [brand tokens from step 6]
-
-FOR EACH IMAGE NEEDED (pull the list from every section prompt's IMAGES
-block):
-- If this tool can generate images: generate an image matching the given
-  subject/composition/mood/lighting/aspect ratio, using the brand color
-  palette where relevant, and save it into /assets/images with a
-  kebab-case filename matching its section (e.g. hero-background.jpg)
-- If this tool cannot generate images: do not fabricate a URL or leave
-  the tag empty — insert `[IMAGE: <same description>]` as the src/alt
-  placeholder so a real image (AI-generated or licensed stock) can be
-  dropped in later without touching the surrounding code
-- Either way, respect the aspect ratio and placement given in the
-  section prompt so the layout doesn't break once a real image lands
-
-CONSTRAINTS / RULES:
-- Never invent a stock-photo URL or claim an image was sourced from a
-  specific service — only mark what was actually generated vs. left as
-  a placeholder
-- Keep every placeholder description specific enough that a human (or a
-  later image-gen pass) can act on it without re-reading the section
-  prompt
-```
+If the receiving tool cannot generate media, output
+`[IMAGE: <the complete asset brief>]` rather than inventing a URL.
 
 ### Navigation bar prompt (P13) template
 
@@ -1491,7 +2089,7 @@ What actually separates a $500 template from a site that reads as a
 $100k agency build isn't more animations — it's **fewer, better-timed**
 ones, deliberate easing, buttery-smooth scroll, and a 3D/visual
 centerpiece that has a real purpose instead of being decoration. Use
-this module only when the interview (step 7) confirms HEAVY / premium /
+this module only when the final experience/technology decision confirms HEAVY / premium /
 3D + smooth scroll — don't apply it by default, since it adds real build
 complexity and a performance budget the user needs to sign off on.
 
@@ -1740,13 +2338,13 @@ Copy button behavior:
 
 Before sharing the file, verify:
 
-- Every approved section (from step 5) has its own dedicated prompt
+- Every approved section (from the final page-structure decision) has its own dedicated prompt
 - Every prompt uses the actual project colors, fonts, and brand voice —
   no leftover generic placeholders for things the user actually specified
 - The framework is named correctly throughout, and the folder structure
   matches it
 - The nav prompt lists the *actual* approved sections
-- Animation prompts match the approved package level from step 7; the
+- Animation prompts match the approved package level from the final experience/technology decision; the
   Three.js prompt is included only if step 7 approved it
 - Every prompt is self-contained (no "as discussed earlier") and
   contains no HTML/CSS/JS — prompts describe *what* to build, not code
