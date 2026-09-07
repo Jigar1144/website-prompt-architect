@@ -1,139 +1,100 @@
 # website-prompt-architect
 
-An agent skill for Claude Code, Codex, and any `SKILL.md`-compatible agent that turns a **brand, business, product, or industry into a premium, business-specific website specification and AI-coding prompt system**.
-
-Instead of generating generic sections, it first understands the business, recommends the right technology and experience direction, then builds the creative, UX, visual, motion, and technical system around it.
+An agent skill for Claude Code, Codex, and any `SKILL.md`-compatible agent that turns a brand, business, product, or industry into a premium, business-specific website specification and AI-coding prompt system.
 
 ## Install
 
 ```bash
-cp -R website-prompt-architect/ ~/.claude/skills/   # Claude Code
-cp -R website-prompt-architect/ ~/.codex/skills/    # Codex
+cp -R website-prompt-architect/ ~/.claude/skills/
+cp -R website-prompt-architect/ ~/.codex/skills/
 ```
 
 Then ask for a website prompt pack or invoke the skill using your agent's supported skill syntax.
 
-## What it does
+## What is new in v6.1
 
-The workflow starts with only:
+v6.1 keeps the V6 production-intelligence architecture and adds a **Sequential Build Mode** for users who already have a detailed website brief and want implementation prompts one at a time.
 
-1. **Business name**
-2. **Business type / industry**
+It also adds a dedicated **Image Asset Registry + Image Prompt System** and a more explicit **Motion Enhancement Pass** for text animation, section choreography, micro-interactions, SVG drawing, map markers, count-up statistics, and reduced-motion behavior.
 
-It then progressively builds the website system.
+### Sequential Build Mode
 
-### Creative system
+When the user supplies a sufficiently detailed brief, the skill does not restart a long discovery interview.
 
-- Business analysis + technology recommendation
-- Experience archetype
-- Theme, color, typography and visual direction
-- **Art Direction Lock**
-- **1–3 Signature Moments**
-- Section-to-section storytelling
-- Spatial design system
-- Interaction hierarchy
-- Responsive art direction
+It can produce:
 
-The stack is adaptive: lightweight editorial sites can stay simple, while suitable projects can use Next.js, GSAP, Lenis, React Three Fiber, Drei, Blender, video, or other tools. Heavy technology is not forced when it does not benefit the business.
+1. Project setup
+2. Installation
+3. Folder structure
+4. Design system
+5. Content/data architecture
+6. Shared components
+7. Header
+8. Hero
+9. Each approved section as its own prompt
+10. Image generation prompts separately
+11. SEO
+12. Accessibility
+13. Responsive behavior
+14. Performance
+15. Motion enhancement
+16. Motion QA
+17. Final agency QA
+18. Build verification
 
-### Full Design Intelligence
+When the user says **"next"**, return only the next requested implementation prompt.
 
-The skill now includes an integrated design-reasoning layer for industry,
-patterns, styles, color, typography, UX, accessibility, motion, performance,
-and stack-specific implementation. It can compare design candidates, lock a
-MASTER design system with page overrides, filter anti-patterns, and run a
-pre-delivery design audit.
+### Separate image prompts
 
-### Guided Discovery
+Every image can receive:
 
-The interview starts with only **Business Name + Business Type**, then moves
-through website status, goals, audience, offer, market, brand/assets, relevant
-features, visual taste, motion, technology, and page structure. Questions are
-asked one at a time, skipped when inferable, and converted into approved project
-decisions before prompt generation.
+- asset ID
+- filename
+- intended component
+- positive generation prompt
+- negative prompt
+- aspect ratio
+- safe crop
+- desktop/mobile treatment
+- visual consistency anchor
+- fallback
 
-### Adaptive Interview
+Coding prompts reference the exact filename rather than embedding the whole generation prompt.
 
-The skill starts with only **Business Name + Business Type**, then asks
-progressive follow-ups only when a real design or implementation decision needs
-clarification. It proposes goals, audience, brand direction, features,
-technology, visual direction, and page structure for approval instead of
-overwhelming the user with a long questionnaire.
+### Motion Enhancement Pass
 
-### Design Intelligence
+The skill now supports a separate post-build motion pass covering:
 
-Industry-aware design-system reasoning now selects patterns, styles, colors,
-typography, key effects, anti-patterns, and accessibility/performance priorities
-before implementation. Production checks also cover semantics, focus,
-responsive text, resilient content, and reduced motion.
+- hero text reveal
+- word/line heading animation
+- image reveal
+- CTA micro-interactions
+- animated statistics
+- section heading reveals
+- card stagger
+- product image hover
+- SVG engineering line drawing
+- global map marker reveals
+- client logo transitions
+- final CTA reveal
+- reduced-motion fallbacks
+- animation performance QA
 
-### Motion & Interaction Engine
+Motion remains business-specific and purpose-driven. No effect is added merely because it is available.
 
-The skill can select motion based on the business, section purpose, art direction, interaction hierarchy, motion tier, and performance budget.
+## Core rules
 
-Includes:
+- Never invent business facts.
+- Missing business information becomes `[PLACEHOLDER]`.
+- Do not introduce generic AI/SaaS visual patterns without business justification.
+- Do not force heavy 3D or WebGL.
+- Every meaningful website section gets a self-contained implementation prompt.
+- Image-generation prompts remain separate from coding prompts unless the user explicitly requests inline prompts.
+- Preserve accessibility, responsive behavior, SEO and performance throughout.
+- Treat the approved design system as MASTER and use page/section overrides only when intentional.
+- Motion must support hierarchy and conversion rather than compete with it.
 
-- Scroll effects: parallax, pin/reveal, horizontal scroll, scrub, masks, zoom, sticky storytelling
-- Text effects: line/word reveals, blur-to-sharp, tracking, kinetic type, scale
-- Card effects: lift, spotlight, perspective tilt, magnetic, expansion, image reveal
-- Image effects: Ken Burns, parallax, mask, grayscale-to-color, blur, morph
-- Cursor effects: magnetic buttons, spotlight, previews — desktop only
-- Section transitions: curtain, image takeover, clip-path, wipes, scale-through
-- Scroll choreography and section-level animation recipes
-
-**Rule:** no effect without purpose. Motion must preserve hierarchy, usability, mobile behavior, reduced-motion support, and performance.
-
-### Cinematic & asset pipeline
-
-For cinematic projects:
-
-```text
-ART DIRECTION
-→ SCENE BOARDS
-→ STILLS
-→ CAMERA / MOTION
-→ TRANSITIONS
-→ ASSET ASSEMBLY
-→ SCROLL SCRUBBING
-→ MOBILE VARIANT
-→ VISUAL QA
-```
-
-Adjacent visual states use explicit entry, main, exit, and next-scene handoff states to preserve continuity.
-
-### Performance-aware premium design
-
-Effects are evaluated as **low, medium, or high cost**. High-cost WebGL, 3D, video scrubbing, particles, or post-processing require justification, loading strategy, mobile strategy, static fallback, reduced-motion fallback, and failure handling.
-
-### Production Intelligence Layer (V5, merged)
-
-After Round 4 (differentiation & objections) and before final output, the
-skill also runs: Page/Component Architecture (multi-page sites), an
-Anti-Hallucination Content Gate (VERIFIED/USER-PROVIDED/INFERRED/
-PLACEHOLDER/MISSING), a Copywriting & Messaging Engine (headlines, value
-props, CTA hierarchy, microcopy), a full SEO + Technical SEO plan, an
-Accessibility + Performance pass (WCAG, contrast, Core Web Vitals), an
-Analytics Plan, Design Tokens shipped as real CSS/Tailwind code, a
-Competitive Reference & Differentiation Teardown, and a signature
-interaction addendum to the Motion Engine. It all consolidates into one
-AI Coding-Agent Master Handoff prompt.
-
-## Output
-
-The skill generates self-contained prompts for approved website sections using:
-
-```text
-OBJECTIVE
-PROJECT CONTEXT
-DESIGN SYSTEM REFERENCE
-REQUIREMENTS
-SPECIFICATIONS
-CONSTRAINTS / RULES
-```
-
-It can also cover architecture, design tokens, responsive behavior, GSAP/scroll architecture, assets, SEO, accessibility, performance, and integrations.
-
-## Skill structure
+## Repository structure
 
 ```text
 website-prompt-architect/
@@ -141,6 +102,7 @@ website-prompt-architect/
 ├── README.md
 ├── LICENSE
 ├── CHANGELOG.md
+├── VERSION
 └── references/
     ├── prompts.md
     ├── pipeline.md
@@ -153,21 +115,24 @@ website-prompt-architect/
 
 Before delivery, the skill checks:
 
-- Recognizable visual identity
-- Consistent art direction
-- Meaningful signature moments
-- Strong storytelling and section handoffs
-- Intentional spatial rhythm
-- Strong typography hierarchy
-- Clear interaction priority
-- Purposeful motion
-- Mobile quality
-- Performance and reduced-motion support
-- No generic AI/template feel
+- recognizable visual identity
+- consistent art direction
+- meaningful signature moments
+- strong storytelling and section handoffs
+- intentional spatial rhythm
+- strong typography hierarchy
+- clear interaction priority
+- purposeful motion
+- mobile quality
+- accessibility
+- performance
+- reduced-motion support
+- factual integrity
+- no generic AI/template feel
 
 Final question:
 
-> **Would an experienced creative director approve this as a premium agency-level website?**
+> Would an experienced creative director approve this as a premium agency-level website?
 
 If not, revise before final delivery.
 
